@@ -8,7 +8,7 @@ export const sequelize = new Sequelize(URI, {
   models: [],
   dialectOptions: {
     ssl: true,
-  }
+  },
 });
 
 export async function connect() {
