@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
 import 'dotenv/config';
 
-// eslint-disable-next-line max-len
-const URI = `postgres://admin:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}`;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const URI = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
 
 export const sequelize = new Sequelize(URI, {
   models: [],
