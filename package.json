@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.ts",
+    "start": "npx ts-node index.ts",
     "build": "tsc",
     "generate-seeder-file": " npx sequelize-cli seed:generate --name demo-product",
-    "db-seed": "npx sequelize-cli db:seed:all"
+    "db-seed": "npx sequelize-cli db:seed:all",
     "prepare": "husky install",
     "lint": "eslint . --ignore-path .gitignore",
     "fix": "npm run lint -- --fix"

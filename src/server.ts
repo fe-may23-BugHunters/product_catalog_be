@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import { router as productsRouter } from './routes/products';
 
 import { connect } from './utils/db';
 
@@ -13,8 +14,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use('/', (req, res) => {
-  res.send('Product catalog');
-});
+app.use(productsRouter);
 
 export default app;
