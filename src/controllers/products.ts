@@ -12,7 +12,7 @@ export async function getAll(
   const result = await ProductsService.getAll(limit, offset);
 
   if (res) {
-    res.send(result);
+    res.json(result);
   }
 }
 
@@ -20,7 +20,7 @@ export async function getById(
   req: Request,
   res: Response,
 ) {
-  const result = await ProductsService.getById(+req.params);
+  const result = await ProductsService.getById(+req.params.id);
 
-  res.send(result);
+  res.json(result);
 }
