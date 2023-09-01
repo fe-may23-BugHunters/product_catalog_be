@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Sequelize } from 'sequelize';
 import { sequelize } from './db';
 import { DataType } from 'sequelize-typescript';
@@ -74,4 +75,3 @@ Product.sync()
   .catch((error) => {
     console.error('Error syncing table:', error);
   });
-  
