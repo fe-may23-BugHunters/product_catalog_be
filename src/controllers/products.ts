@@ -1,4 +1,4 @@
-import { Model } from 'sequelize';
+/* eslint-disable no-shadow */
 import * as ProductsService from '../services/products';
 import { Request, Response } from 'express';
 
@@ -15,16 +15,14 @@ export async function getAll(
 
   const result = await ProductsService.getAll(limit, offset);
 
-  if (res) {
-    res.json(result);
-  }
+  return res.json(result);
 }
 
 export async function getById(
   req: Request,
   res: Response,
 ) {
-  const result = await ProductsService.getById(+req.params.productId);
+  const result = await ProductsService.getById(req.params.productId);
 
   res.json(result);
 }
