@@ -7,17 +7,10 @@ export const Product = sequelize.define('Product', {
   id: {
     type: DataType.UUID,
     defaultValue: Sequelize.literal('uuid_generate_v1()'),
+    allowNull: false,
     primaryKey: true,
   },
-  category: {
-    type: DataType.ENUM('phones', 'tablets', 'accessories'),
-    allowNull: false,
-  },
-  phoneId: {
-    type: DataType.STRING,
-    allowNull: false,
-  },
-  itemId: {
+  namespaceId: {
     type: DataType.STRING,
     allowNull: false,
   },
@@ -25,23 +18,47 @@ export const Product = sequelize.define('Product', {
     type: DataType.STRING,
     allowNull: false,
   },
-  fullPrice: {
-    type: DataType.INTEGER,
-    allowNull: false,
-  },
-  price: {
-    type: DataType.INTEGER,
-    allowNull: false,
-  },
-  screen: {
-    type: DataType.STRING,
+  capacityAvailable: {
+    type: DataType.ARRAY(DataType.STRING),
     allowNull: false,
   },
   capacity: {
     type: DataType.STRING,
     allowNull: false,
   },
+  priceRegular: {
+    type: DataType.INTEGER,
+    allowNull: false,
+  },
+  priceDiscount: {
+    type: DataType.INTEGER,
+    allowNull: false,
+  },
+  colorsAvailable: {
+    type: DataType.ARRAY(DataType.STRING),
+    allowNull: false,
+  },
   color: {
+    type: DataType.STRING,
+    allowNull: false,
+  },
+  images: {
+    type: DataType.ARRAY(DataType.STRING),
+    allowNull: false,
+  },
+  description: {
+    type: DataType.JSON,
+    allowNull: false,
+  },
+  screen: {
+    type: DataType.STRING,
+    allowNull: false,
+  },
+  resolution: {
+    type: DataType.STRING,
+    allowNull: false,
+  },
+  processor: {
     type: DataType.STRING,
     allowNull: false,
   },
@@ -49,23 +66,22 @@ export const Product = sequelize.define('Product', {
     type: DataType.STRING,
     allowNull: false,
   },
-  year: {
-    type: DataType.INTEGER,
-    allowNull: false,
-  },
-  image: {
+  zoom: {
     type: DataType.STRING,
     allowNull: false,
   },
-  createdAt: {
-    type: DataType.DATE,
-    field: 'created_at',
+  camera: {
+    type: DataType.STRING,
     allowNull: false,
-    defaultValue: Sequelize.literal('now()'),
+  },
+  cell: {
+    type: DataType.ARRAY(DataType.STRING),
+    allowNull: false,
   },
 }, {
   modelName: 'products',
   updatedAt: false,
+  createdAt: false,
 });
 
 Product.sync()
