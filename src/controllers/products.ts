@@ -26,3 +26,17 @@ export async function getById(
 
   res.json(result);
 }
+
+export async function getRandom10(
+  req: Request,
+  res: Response,
+) {
+  const limit = 10;
+  const offset = req.query.offset && !isNaN(+req.query.offset)
+    ? +req.query.offset
+    : 0;
+
+  const result = await ProductsService.getAll(limit, offset);
+
+  return res.json(result);
+}
