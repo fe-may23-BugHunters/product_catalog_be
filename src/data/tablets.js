@@ -1664,6 +1664,7 @@ const tablets = [
     'zoom': 'Digital zoom up to 5x',
     'cell': ['Not applicable'],
   },
-];
+]
+  .map(phone => ({ ...phone, category: tablets }));
 
 module.exports = { tablets };

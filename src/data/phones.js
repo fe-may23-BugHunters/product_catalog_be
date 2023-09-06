@@ -5712,6 +5712,6 @@ const phones = [
     'cell': ['GPRS', 'EDGE', 'WCDMA', 'UMTS', 'HSPA', 'LTE', '5G'],
   },
 ]
-  .map(phone => ({ ...phone, category: phone }));
+  .map(phone => ({ ...phone, category: phones }));
 
 module.exports = { phones };

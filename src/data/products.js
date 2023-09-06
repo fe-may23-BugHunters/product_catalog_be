@@ -3,7 +3,7 @@
 // USE ONLY FOR SEEDING
 
 const { accessories } = require('./accessories');
-const { phones } = require('./phone');
+const { phones } = require('./phones');
 const { tablets } = require('./tablets');
 
 const products = [...phones, ...tablets, ...accessories];
