@@ -1,4 +1,3 @@
-import { Sequelize } from 'sequelize';
 import { Product } from '../utils/db_product_table';
 import { SortField } from '../types/SortField';
 import { Category } from '../types/Category';
@@ -7,12 +6,8 @@ export async function getAllFromCategory(
   limit: number,
   offset: number,
   sortBy: SortField,
-  category?: Category,
+  category: Category,
 ) {
-  if (!category) {
-    return getAll(limit, offset, sortBy);
-  }
-
   return Product.findAndCountAll({
     where: {
       category,
@@ -25,13 +20,11 @@ export async function getAllFromCategory(
   });
 }
 
-export async function getAll(
-  limit: number,
-  offset: number,
-  sortBy: SortField = 'name',
-) {
+export async function getAll(limit: number, offset: number) {
   return Product.findAndCountAll({
-    order: [sortBy],
+    order: [
+      'name',
+    ],
     limit,
     offset,
   });
@@ -43,7 +36,9 @@ export async function getById(id: string) {
 
 export async function getRandom(limit: number, offset: number) {
   return Product.findAll({
-    order: Sequelize.literal('rand()'),
+    order: [
+      'createdAt',
+    ],
     limit,
     offset,
   });
