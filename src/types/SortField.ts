@@ -1,1 +1,1 @@
-export type SortField = 'price' | 'year' | 'name';
+export type SortField = 'price' | 'priceRegular' | 'name';

@@ -7,8 +7,12 @@ export async function getAllFromCategory(
   limit: number,
   offset: number,
   sortBy: SortField,
-  category: Category,
+  category?: Category,
 ) {
+  if (!category) {
+    return getAll(limit, offset, sortBy);
+  }
+
   return Product.findAndCountAll({
     where: {
       category,
@@ -21,11 +25,13 @@ export async function getAllFromCategory(
   });
 }
 
-export async function getAll(limit: number, offset: number) {
+export async function getAll(
+  limit: number,
+  offset: number,
+  sortBy: SortField = 'name',
+) {
   return Product.findAndCountAll({
-    order: [
-      'name',
-    ],
+    order: [sortBy],
     limit,
     offset,
   });

@@ -4,8 +4,7 @@ import { Request, Response } from 'express';
 import { SortField } from '../types/SortField';
 import { Category } from '../types/Category';
 
-const sortFields = ['name', 'year', 'capacity'];
-const categories = ['phones', 'tablets', 'accessories'];
+const sortFields = ['name', 'priceRegular', 'capacity'];
 
 export async function getAll(
   req: Request,
@@ -20,15 +19,16 @@ export async function getAll(
   const sortBy = sortFields.includes(req.query.sortBy as SortField)
     ? req.query.sortBy
     : 'name';
-  const category = categories.includes(req.query.category as Category)
-    ? req.query.category
-    : 'phones';
+  const category = Object.keys(Category)
+    .includes(req.query.category as Category)
+    ? req.query.category as Category
+    : undefined;
 
   const result = await ProductsService.getAllFromCategory(
     limit,
     offset,
     sortBy as SortField,
-    category as Category,
+    category,
   );
 
   return res.json(result);
