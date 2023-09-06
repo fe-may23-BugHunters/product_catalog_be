@@ -58,3 +58,20 @@ export async function getRandom10(
 
   return res.json(result);
 }
+
+export async function getByVariant(
+  req: Request,
+  res: Response,
+) {
+  const color = req.query.color;
+  const capacity = req.query.capacity;
+  const namespaceId = req.query.namespaceId;
+
+  const result = await ProductsService.getVariant(
+    color as string,
+    capacity as string,
+    namespaceId as string,
+  );
+
+  return res.json(result);
+}

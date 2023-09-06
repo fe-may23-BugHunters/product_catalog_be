@@ -43,3 +43,20 @@ export async function getRandom(limit: number, offset: number) {
     offset,
   });
 }
+
+export async function getVariant(
+  color: string,
+  capacity: string,
+  namespaceId: string,
+) {
+  return Product.findAll({
+    where: {
+      color,
+      capacity,
+      namespaceId,
+    },
+    order: [
+      'createdAt',
+    ],
+  });
+}

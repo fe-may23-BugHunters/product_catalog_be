@@ -5,8 +5,8 @@ export const router = express.Router();
 
 router.get('/', ProductController.getAll);
 router.get('/recommended', ProductController.getRandom10);
+router.get('/variants', ProductController.getByVariant);
 router.get('/new', ProductController.getRandom10);
 router.get('/discount', ProductController.getRandom10);
 router.get('/:productId', ProductController.getById);
 router.get('/:productId/recommended', ProductController.getRandom10);
-// router.get('/variant', ProductController.getByVariant);
