@@ -11,10 +11,7 @@ connect();
 const app = express();
 
 app.use(cors({
-  origin: [
-    process.env.CLIENT_URL_LOCAL || '',
-    process.env.CLIENT_URL_PROD || '',
-  ],
+  origin: '*',
 }));
 app.use(express.json());
 
