@@ -75,3 +75,33 @@ export async function getByVariant(
 
   return res.json(result);
 }
+
+export async function searchProducts(
+  req: Request,
+  res: Response,
+) {
+  const query = req.query.query as string;
+
+  if (!query) {
+    return res.status(400).json({ error: "'query' is required" });
+  }
+
+  const limit = req.query.limit && !isNaN(+req.query.limit)
+    ? +req.query.limit
+    : 10;
+  const offset = req.query.offset && !isNaN(+req.query.offset)
+    ? +req.query.offset
+    : 0;
+
+  try {
+    const results = await ProductsService.searchProductsByQuery(
+      query,
+      limit,
+      offset,
+    );
+
+    return res.json(results);
+  } catch (error) {
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
