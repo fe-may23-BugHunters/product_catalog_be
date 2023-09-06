@@ -1,17 +1,44 @@
+import { Sequelize } from 'sequelize';
 import { Product } from '../utils/db_product_table';
+import { SortField } from '../types/SortField';
+import { Category } from '../types/Category';
 
-export async function getAll(limit: number, offset: number) {
+export async function getAllFromCategory(
+  limit: number,
+  offset: number,
+  sortBy: SortField,
+  category: Category,
+) {
   return Product.findAndCountAll({
+    where: {
+      category,
+    },
     order: [
-      'created_at',
+      sortBy,
     ],
     limit,
     offset,
   });
 }
 
-// some changes
+export async function getAll(limit: number, offset: number) {
+  return Product.findAndCountAll({
+    order: [
+      'name',
+    ],
+    limit,
+    offset,
+  });
+}
 
 export async function getById(id: string) {
   return Product.findByPk(id);
+}
+
+export async function getRandom(limit: number, offset: number) {
+  return Product.findAll({
+    order: Sequelize.literal('rand()'),
+    limit,
+    offset,
+  });
 }

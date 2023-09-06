@@ -18,6 +18,10 @@ export const Product = sequelize.define('Product', {
     type: DataType.STRING,
     allowNull: false,
   },
+  category: {
+    type: DataType.ENUM('phones', 'tablests', 'accessories'),
+    allowNull: false,
+  },
   capacityAvailable: {
     type: DataType.ARRAY(DataType.STRING),
     allowNull: false,

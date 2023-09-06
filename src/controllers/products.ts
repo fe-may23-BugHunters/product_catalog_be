@@ -1,6 +1,11 @@
 /* eslint-disable no-shadow */
 import * as ProductsService from '../services/products';
 import { Request, Response } from 'express';
+import { SortField } from '../types/SortField';
+import { Category } from '../types/Category';
+
+const sortFields = ['name', 'year', 'capacity'];
+const categories = ['phones', 'tablets', 'accessories'];
 
 export async function getAll(
   req: Request,
@@ -12,8 +17,19 @@ export async function getAll(
   const offset = req.query.offset && !isNaN(+req.query.offset)
     ? +req.query.offset
     : 0;
+  const sortBy = sortFields.includes(req.query.sortBy as SortField)
+    ? req.query.sortBy
+    : 'name';
+  const category = categories.includes(req.query.category as Category)
+    ? req.query.category
+    : 'phones';
 
-  const result = await ProductsService.getAll(limit, offset);
+  const result = await ProductsService.getAllFromCategory(
+    limit,
+    offset,
+    sortBy as SortField,
+    category as Category,
+  );
 
   return res.json(result);
 }
@@ -32,11 +48,13 @@ export async function getRandom10(
   res: Response,
 ) {
   const limit = 10;
-  const offset = req.query.offset && !isNaN(+req.query.offset)
-    ? +req.query.offset
-    : 0;
 
-  const result = await ProductsService.getAll(limit, offset);
+  const min = 1;
+  const max = (await ProductsService.getAll(1, 1)).count - limit;
+
+  const offset = Math.floor(Math.random() * (max - min)) + min;
+
+  const result = await ProductsService.getRandom(limit, offset);
 
   return res.json(result);
 }
