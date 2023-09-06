@@ -1,1 +1,6 @@
-export type Category = 'phones' | 'tablets' | 'accessories';
+/* eslint-disable no-shadow */
+export enum Category {
+  'phones' = 'phones',
+  'tablets' = 'tablets',
+  'accessories' = 'accessories',
+};

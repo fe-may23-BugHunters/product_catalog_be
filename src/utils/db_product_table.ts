@@ -12,7 +12,7 @@ export const Product = sequelize.define('Product', {
   },
   namespaceId: {
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   name: {
     type: DataType.STRING,
@@ -36,7 +36,7 @@ export const Product = sequelize.define('Product', {
   },
   priceDiscount: {
     type: DataType.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
   colorsAvailable: {
     type: DataType.ARRAY(DataType.STRING),
@@ -56,36 +56,39 @@ export const Product = sequelize.define('Product', {
   },
   screen: {
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   resolution: {
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   processor: {
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   ram: {
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   zoom: {
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   camera: {
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   cell: {
     type: DataType.ARRAY(DataType.STRING),
-    allowNull: false,
+    allowNull: true,
+  },
+  createdAt: {
+    type: DataType.DATE,
+    defaultValue: sequelize.literal('NOW()'),
   },
 }, {
   modelName: 'products',
   updatedAt: false,
-  createdAt: false,
 });
 
 Product.sync()

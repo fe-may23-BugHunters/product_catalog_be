@@ -1396,6 +1396,6 @@ const accessories = [
     'cell': ['Wi-Fi', 'Bluetooth', 'LTE'],
   },
 ]
-  .map(phone => ({ ...phone, category: accessories }));
+  .map(phone => ({ ...phone, category: 'accessories' }));
 
 module.exports = { accessories };

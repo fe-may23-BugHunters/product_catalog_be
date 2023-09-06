@@ -1665,6 +1665,6 @@ const tablets = [
     'cell': ['Not applicable'],
   },
 ]
-  .map(phone => ({ ...phone, category: tablets }));
+  .map(phone => ({ ...phone, category: 'tablets' }));
 
 module.exports = { tablets };
