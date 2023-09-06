@@ -28,7 +28,7 @@ export async function getAll(
     limit,
     offset,
     sortBy as SortField,
-    category,
+    category as Category,
   );
 
   return res.json(result);
