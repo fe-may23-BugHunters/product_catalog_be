@@ -22,7 +22,7 @@ export async function addFavourite(userId :string, productId: string | undefined
     },
   });
 
-  if (!response) {
+  if (response) {
     throw new Error('This product is already in Favourites');
   }
 
