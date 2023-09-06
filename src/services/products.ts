@@ -1,6 +1,7 @@
 import { Product } from '../utils/db_product_table';
 import { SortField } from '../types/SortField';
 import { Category } from '../types/Category';
+import * as Sequelize from 'sequelize';
 
 export async function getAllFromCategory(
   limit: number,
@@ -58,5 +59,23 @@ export async function getVariant(
     order: [
       'createdAt',
     ],
+  });
+}
+
+export async function searchProductsByQuery(
+  query: string, limit: number, offset: number,
+) {
+  return Product.findAndCountAll({
+    where: {
+      [Sequelize.Op.or]: [
+        { name: { [Sequelize.Op.iLike]: `%${query}%` } },
+        { description: { [Sequelize.Op.iLike]: `%${query}%` } },
+      ],
+    },
+    order: [
+      ['name', 'ASC'],
+    ],
+    limit,
+    offset,
   });
 }
